@@ -9,6 +9,12 @@
 
 
 ## API Endpoints
+#### users:
+* INDEX route: '/users' [GET] 
+* SHOW route: '/users/:id' [GET] 
+* CREATE route: '/users' [POST] 
+* Authneticate route: '/users/auth' [POST] 
+#### products:
 
 ## Tables:
 * users (id:VARCHAR [primary key], firstname:VARCHAR, lastname:VARCHAR, password_digest:VARCHAR)
