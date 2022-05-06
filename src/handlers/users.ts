@@ -2,7 +2,9 @@ import express, { Request, Response } from 'express'
 import { User, UserStore } from '../models/user'
 import verifyAuthToken from '../middlewares/jwtauth'
 import jwt from 'jsonwebtoken'
+
 const store = new UserStore()
+
 const { TOKEN_SECRET } = process.env;
 const secretToken = TOKEN_SECRET;
 

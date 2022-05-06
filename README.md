@@ -1,15 +1,39 @@
 # Storefront Backend Project
 
-* .env
-* database.json
-* create folders
+## Setup:
+1. yarn : install packages
+2. yarn watch : run server
+3. create .env file which contains the following parameters:
 
-* server: "http://localhost:5000"
-* yarn watch >> for serve running
-* docker compose up >> for running db
-* docker-compose run --rm postgres psql -h 63b078e14cb2 -U postgres_express_api_user -d postgres_express_api_dev 
+POSTGRES_HOST = 127.0.0.1
+POSTGRES_DB = postgres_express_api_dev
+POSTGRES_TEST_DB = postgres_express_api_test
+POSTGRES_USER = postgres_express_api_user
+POSTGRES_PASSWORD = password123
 
+ENV = dev
 
+BCRYPT_PASSWORD = password123
+SALT_ROUNDS = 10
+TOKEN_SECRET = udacityc2
+
+4. create database.json file with the following object:
+{
+    "dev": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "postgres_express_api_dev",
+      "user": "postgres_express_api_user",
+      "password": "password123"
+    },
+    "test": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "postgres_express_api_test",
+      "user": "postgres_express_api_user",
+      "password": "password123"
+    }
+}
 
 
 ## Tables:
@@ -21,15 +45,26 @@
 
 ## API Endpoints
 #### users:
-* INDEX route: '/users' [GET] 
-* SHOW route: '/users/:id' [GET] 
-* CREATE route: '/users' [POST] 
-* Authneticate route: '/users/auth' [POST] 
+* INDEX route: 'http://localhost:8000/users' [GET] 
+* SHOW route: 'http://localhost:8000/users/:id' [GET] 
+* CREATE route: 'http://localhost:8000/users' [POST] 
+* Authneticate route: 'http://localhost:8000/users/auth' [POST] 
 #### products:
+* INDEX route: 'http://localhost:8000/products' [GET] 
+* SHOW route: 'http://localhost:8000/products/:id' [GET] 
+* CREATE route: 'http://localhost:8000/products' [POST] 
+#### orders:
+* INDEX route: 'http://localhost:8000/orders' [GET] 
+* SHOW route: 'http://localhost:8000/users/:user_id/orders' [GET] 
+* CREATE route: 'http://localhost:8000/users/:user_id/orders' [POST] 
 
 ## Postman Validations
 * **Headers**>> Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpudWxsLCJpYXQiOjE2NTE3NzU1NzB9.LJ9Rdn1lO2YOLFbohefH26O6xlGfJ1jdoRHEG1R_5Hs
-#### users:
-* Create user body: {"firstname": "example1","lastname":"example2","password_digest":"password"}
+#### users body:
+* Create user: {"firstname": "example1","lastname":"example2","password_digest":"password"}
 
-* User Authentication body: {"id":number,"password_digest":"user password"}
+* User Authentication: {"id":number,"password_digest":"user password"}
+#### products body:
+* Create product: {"product_name": "dress", "price":550,"category":"fashion"}
+#### orders body:
+* Create order:{"order_status":"active/not active"}
