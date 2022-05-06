@@ -60,7 +60,7 @@ TOKEN_SECRET = udacityc2
 * CREATE route: 'http://localhost:8000/users/:user_id/orders' [POST] 
 
 ## Postman Validations
-* **Headers**>> Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpudWxsLCJpYXQiOjE2NTE3NzU1NzB9.LJ9Rdn1lO2YOLFbohefH26O6xlGfJ1jdoRHEG1R_5Hs
+* **Headers**>> ```Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpudWxsLCJpYXQiOjE2NTE3NzU1NzB9.LJ9Rdn1lO2YOLFbohefH26O6xlGfJ1jdoRHEG1R_5Hs```
 * #### users body:
     * Create user: ```{"firstname": "example1","lastname":"example2","password_digest":"password"}```
     *  User Authentication: ```{"id":number,"password_digest":"user password"}```
