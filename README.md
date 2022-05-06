@@ -47,17 +47,21 @@ TOKEN_SECRET = udacityc2
 ## API Endpoints
 #### users:
 * INDEX route: 'http://localhost:8000/users' [GET] 
-* SHOW route: 'http://localhost:8000/users/:id' [GET] 
+* SHOW route: 'http://localhost:8000/users/2' [GET] 
 * CREATE route: 'http://localhost:8000/users' [POST] 
 * Authneticate route: 'http://localhost:8000/users/auth' [POST] 
 #### products:
 * INDEX route: 'http://localhost:8000/products' [GET] 
-* SHOW route: 'http://localhost:8000/products/:id' [GET] 
+* SHOW route: 'http://localhost:8000/products/1' [GET] 
 * CREATE route: 'http://localhost:8000/products' [POST] 
 #### orders:
 * INDEX route: 'http://localhost:8000/orders' [GET] 
-* SHOW route: 'http://localhost:8000/users/:user_id/orders' [GET] 
-* CREATE route: 'http://localhost:8000/users/:user_id/orders' [POST] 
+* SHOW route: 'http://localhost:8000/users/2/orders' [GET] 
+* CREATE route: 'http://localhost:8000/users/2/orders' [POST] 
+#### dashboard:
+* topFivePopularProducts route: 'http://localhost:8000/top5products' [GET]
+* productsByCategory route: 'http://localhost:8000/catProducts/fashion' [GET]
+* completedOrders route: 'http://localhost:8000/completedOrders/user/2' [GET]
 
 ## Postman Validations
 * **Headers**>> ```Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpudWxsLCJpYXQiOjE2NTE3NzU1NzB9.LJ9Rdn1lO2YOLFbohefH26O6xlGfJ1jdoRHEG1R_5Hs```
@@ -67,4 +71,6 @@ TOKEN_SECRET = udacityc2
 * #### products body:
     * Create product: ```{"product_name": "dress", "price":550,"category":"fashion"}```
 * #### orders body:
-    * Create order:```{"order_status":"active/not active"}```
+    * Create order:```{"order_status":"active/done/in progress"}```
+* #### dashboard body:
+    * completedOrders:```{"order_status":"active/done/in progress"}```

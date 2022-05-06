@@ -46,12 +46,17 @@ const create = async (req: Request, res: Response) => {
             user_id: req.params.user_id,
         };
 
-        const newOrder = await store.create(order);
-        if (!newOrder){
-            res.status(404)
-            res.json({error:'Cannot add this order!'})
-        };
-        res.json(newOrder);
+        
+        const user = await userstore.show(req.params.user_id);
+
+        if (!user){
+            res.status(404).json({error: "Invalid User"});
+        }
+        else{
+            const newOrder = await store.create(order);
+            if (!newOrder){res.status(404).json({error:'This client makes no order!'});}
+            else{res.status(200).json(newOrder);}
+        }
     } catch(err) {
         res.status(400);
         res.json(err);
