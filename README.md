@@ -4,7 +4,7 @@
 1. yarn : install packages
 2. yarn watch : run server
 3. create .env file which contains the following parameters:
-
+```
 POSTGRES_HOST = 127.0.0.1
 POSTGRES_DB = postgres_express_api_dev
 POSTGRES_TEST_DB = postgres_express_api_test
@@ -16,8 +16,9 @@ ENV = dev
 BCRYPT_PASSWORD = password123
 SALT_ROUNDS = 10
 TOKEN_SECRET = udacityc2
-
+```
 4. create database.json file with the following object:
+```
 {
     "dev": {
       "driver": "pg",
@@ -34,13 +35,13 @@ TOKEN_SECRET = udacityc2
       "password": "password123"
     }
 }
-
+```
 
 ## Tables:
-* **users** (id:VARCHAR [primary key], firstname:VARCHAR, lastname:VARCHAR, password_digest:VARCHAR)
-* **products** (id:VARCHAR [primary key], product_name:VARCHAR, category:VARCHAR, price: number )
-* **orders** (id:VARCHAR [primary key], order_status:VARCHAR, user_id:VARCHAR [foreign_key to users table])
-* **order_products** (id:VARCHAR [primary key], quantity:number, order_id:number [foreign_key to orders table], product_id:number [foreign_key to products table])
+* **users** ```(id:VARCHAR [primary key], firstname:VARCHAR, lastname:VARCHAR, password_digest:VARCHAR)```
+* **products** ```(id:VARCHAR [primary key], product_name:VARCHAR, category:VARCHAR, price: number )```
+* **orders** ```(id:VARCHAR [primary key], order_status:VARCHAR, user_id:VARCHAR [foreign_key to users table])```
+* **order_products** ```(id:VARCHAR [primary key], quantity:number, order_id:number [foreign_key to orders table], product_id:number [foreign_key to products table])```
 
 
 ## API Endpoints
@@ -60,11 +61,10 @@ TOKEN_SECRET = udacityc2
 
 ## Postman Validations
 * **Headers**>> Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpudWxsLCJpYXQiOjE2NTE3NzU1NzB9.LJ9Rdn1lO2YOLFbohefH26O6xlGfJ1jdoRHEG1R_5Hs
-#### * users body:
-** Create user: {"firstname": "example1","lastname":"example2","password_digest":"password"}
-
-** User Authentication: {"id":number,"password_digest":"user password"}
-#### * products body:
-** Create product: {"product_name": "dress", "price":550,"category":"fashion"}
-#### * orders body:
-** Create order:{"order_status":"active/not active"}
+* #### users body:
+    * Create user: ```{"firstname": "example1","lastname":"example2","password_digest":"password"}```
+    *  User Authentication: ```{"id":number,"password_digest":"user password"}```
+* #### products body:
+    * Create product: ```{"product_name": "dress", "price":550,"category":"fashion"}```
+* #### orders body:
+    * Create order:```{"order_status":"active/not active"}```
