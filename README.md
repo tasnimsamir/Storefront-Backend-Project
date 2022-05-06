@@ -60,11 +60,11 @@ TOKEN_SECRET = udacityc2
 
 ## Postman Validations
 * **Headers**>> Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpudWxsLCJpYXQiOjE2NTE3NzU1NzB9.LJ9Rdn1lO2YOLFbohefH26O6xlGfJ1jdoRHEG1R_5Hs
-#### users body:
-* Create user: {"firstname": "example1","lastname":"example2","password_digest":"password"}
+#### * users body:
+** Create user: {"firstname": "example1","lastname":"example2","password_digest":"password"}
 
-* User Authentication: {"id":number,"password_digest":"user password"}
-#### products body:
-* Create product: {"product_name": "dress", "price":550,"category":"fashion"}
-#### orders body:
-* Create order:{"order_status":"active/not active"}
+** User Authentication: {"id":number,"password_digest":"user password"}
+#### * products body:
+** Create product: {"product_name": "dress", "price":550,"category":"fashion"}
+#### * orders body:
+** Create order:{"order_status":"active/not active"}
