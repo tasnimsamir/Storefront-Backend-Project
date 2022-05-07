@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": "jasmine-ts",
-    "tsc": "tsc"
+    "test": " npm run build && jasmine-ts",
+    "tsc": "tsc",
+    "build": "npx tsc"
   },
   "author": "Udacity",
   "license": "ISC",
@@ -25,6 +26,7 @@
     "@types/jasmine": "^3.10.6",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/pg": "^7.14.7",
+    "@types/supertest": "^2.0.12",
     "bcrypt": "^5.0.1",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
@@ -32,6 +34,7 @@
     "jasmine-spec-reporter": "^6.0.0",
     "jasmine-ts": "^0.3.3",
     "jsonwebtoken": "^8.5.1",
+    "supertest": "^6.2.3",
     "ts-node": "^9.1.1",
     "tsc-watch": "^4.2.9"
   }

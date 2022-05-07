@@ -47,7 +47,20 @@ export class ProductStore{
             conn.release;
             return result.rows[0] as Product;
         }catch(err){
-            throw new Error (`unable create this Product: ${err}`);
+            throw new Error (err as string);
+        }
+    }
+
+    async delete(product_id:string): Promise<Product>{
+        try{
+            // @ts-ignore
+            const conn: PoolClient = await Client.connect();
+            const sql = 'DELETE FROM products WHERE id=($1)';
+            const result:QueryResult = await conn.query(sql,[product_id]);
+            conn.release;
+            return result.rows[0] as Product;
+        }catch(err){
+            throw new Error(err as string);
         }
     }
 }

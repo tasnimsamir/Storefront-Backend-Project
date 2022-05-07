@@ -5,10 +5,7 @@ import { Product } from '../models/product'
 import { Order } from '../models/order'
 
 type topProduct = {
-  id?: string;
   product_name: string;
-  price:number;
-  category:string;
   quantity: number;
 }
 
@@ -18,11 +15,12 @@ export class DashboardQueries {
     try {
       //@ts-ignore
       const conn:PoolClient = await Client.connect();
-      const sql = 'SELECT product_id,product_name,price,category,quantity FROM products INNER JOIN order_products ON products.id = order_products.product_id ORDER BY quantity DESC LIMIT 5';
+      const sql = 'SELECT product_name,SUM(quantity) AS quantity_sum FROM products INNER JOIN order_products ON products.id = order_products.product_id GROUP BY product_name ORDER BY quantity_sum DESC LIMIT 5;';
       const result:QueryResult = await conn.query(sql);
       conn.release();
       return result.rows;
     } catch (err) {
+      console.log(err)
       throw new Error(`unable get top 5 popular products: ${err}`)
     } 
   }

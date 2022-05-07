@@ -53,10 +53,28 @@ const create = async (req: Request, res: Response) => {
     }
 }
 
+const destroy = async(req:Request,res:Response)=>{
+    try{
+        const product = await store.show(req.params.id);
+        if (!product){
+            res.status(404);
+            res.json({error:'Invalid product!'});
+        }
+        else{
+            const deleted = await store.delete(req.params.id);
+            res.status(200).json(deleted);
+        }
+    }catch(err){
+        res.status(400);
+        res.json({ERROR: `${err}`});
+    }
+}
+
 const productRoutes = (app: express.Application) => {
     app.get('/products', index);
     app.get('/products/:id', show);
     app.post('/products', verifyAuthToken, create);
+    app.delete('/products/:id', verifyAuthToken, destroy);
   }
   
   export default productRoutes;

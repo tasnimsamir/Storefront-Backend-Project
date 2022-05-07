@@ -63,8 +63,26 @@ const create = async (req: Request, res: Response) => {
     }
 }
 
+const destroy = async(req:Request,res:Response)=>{
+    try{
+        const order = await store.showorderbyid(req.params.id);
+        if (!order){
+            res.status(404);
+            res.json({error:'Invalid order!'});
+        }
+        else{
+            const deleted = await store.delete(req.params.id);
+            res.status(200).json(deleted);
+        }
+    }catch(err){
+        res.status(400);
+        res.json({ERROR: `${err}`});
+    }
+}
+
 const orderRoutes = (app: express.Application) => {
     app.get('/orders',verifyAuthToken, index);
+    app.delete('/orders/:id',verifyAuthToken, destroy);
     app.get('/users/:user_id/orders',verifyAuthToken, show);
     app.post('/users/:user_id/orders', verifyAuthToken, create);
   }

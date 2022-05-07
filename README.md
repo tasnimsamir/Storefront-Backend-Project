@@ -71,6 +71,15 @@ TOKEN_SECRET = udacityc2
 * #### products body:
     * Create product: ```{"product_name": "dress", "price":550,"category":"fashion"}```
 * #### orders body:
-    * Create order:```{"order_status":"active/done/in progress"}```
+    * Create order:```{"order_status":"done/in progress"}```
 * #### dashboard body:
-    * completedOrders:```{"order_status":"active/done/in progress"}```
+    * completedOrders:```{"order_status":"done/in progress"}```
+
+## Scripts:
+* npm run test : build & test with jasmine
+* npm run build: compile typescript to javacsript in /dist folder
+* yarn watch: run server
+
+## Note:
+* Specs of users & products models are pending using "xdescripe" to prevent the error "jasmine default timeout interval".
+* **For testing users & products models, replace "xdescripe" with "fdescripe" in "/tests/models/userSpec && /tests/models/productSpec".**

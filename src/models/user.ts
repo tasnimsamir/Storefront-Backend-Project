@@ -60,6 +60,19 @@ export class UserStore {
         }
     }
 
+    async delete(user_id:string): Promise<User>{
+        try{
+            // @ts-ignore
+            const conn: PoolClient = await Client.connect();
+            const sql = 'DELETE FROM users WHERE id=($1)';
+            const result:QueryResult = await conn.query(sql,[user_id]);
+            conn.release;
+            return result.rows[0] as User;
+        }catch(err){
+            throw new Error(err as string);
+        }
+    }
+
     async authenticate(id:string, password: string): Promise<User | null> {
         try{
             // @ts-ignore

@@ -15,7 +15,7 @@ export class OrderStore{
         try {
             // @ts-ignore
             const conn:PoolClient = await Client.connect();
-            const sql = 'SELECT * FROM orders WHERE user_id=($1)';
+            const sql = 'SELECT * FROM orders';
             const result:QueryResult = await conn.query(sql);
             conn.release;
             return result.rows as Order[]
@@ -37,6 +37,19 @@ export class OrderStore{
         }
     }
 
+    async showorderbyid(id:string): Promise<Order>{
+        try{
+            // @ts-ignore
+            const conn: PoolClient = await Client.connect();
+            const sql = 'SELECT * FROM orders WHERE id=($1)';
+            const result:QueryResult = await conn.query(sql,[id]);
+            conn.release;
+            return result.rows[0] as Order;
+        }catch(err){
+            throw new Error(err as string);
+        }
+    }
+
     async create(o:Order): Promise<Order>{
         try{
             // @ts-ignore
@@ -48,6 +61,19 @@ export class OrderStore{
             return result.rows[0] as Order;
         }catch(err){
             throw new Error (`unable create this Order: ${err}`);
+        }
+    }
+
+    async delete(order_id:string): Promise<Order>{
+        try{
+            // @ts-ignore
+            const conn: PoolClient = await Client.connect();
+            const sql = 'DELETE FROM orders WHERE id=($1)';
+            const result:QueryResult = await conn.query(sql,[order_id]);
+            conn.release;
+            return result.rows[0] as Order;
+        }catch(err){
+            throw new Error(err as string);
         }
     }
 

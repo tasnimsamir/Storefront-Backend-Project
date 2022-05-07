@@ -56,6 +56,24 @@ const create = async (req: Request, res: Response) => {
     }
 }
 
+const destroy = async(req:Request,res:Response)=>{
+    try{
+        const user = await store.show(req.params.id);
+        console.log('done')
+        if (!user){
+            res.status(404);
+            res.json({error:'Invalid User!'});
+        }
+        else{
+            const deleted = await store.delete(req.params.id);
+            res.status(200).json(deleted);
+        }
+    }catch(err){
+        res.status(400);
+        res.json({ERROR: `${err}`});
+    }
+}
+
 const authenticate = async (req: Request, res: Response) => {
     const user: User = {
       id:req.body.id,
@@ -77,6 +95,7 @@ const userRoutes = (app: express.Application) => {
     app.get('/users', verifyAuthToken, index);
     app.get('/users/:id', verifyAuthToken, show);
     app.post('/users', verifyAuthToken, create);
+    app.delete('/users/:id', verifyAuthToken, destroy);
     app.post("/users/auth", authenticate);
   }
   

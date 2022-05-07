@@ -16,7 +16,7 @@ const topFivePopularProducts = async(_req:Request,res:Response)=>{
       else{res.json(topProducts);}
   }catch(err){
       res.status(400);
-      res.json(err);
+      res.json({ERROR: err});
   }  
 }
 
