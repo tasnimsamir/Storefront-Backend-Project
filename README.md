@@ -81,5 +81,5 @@ TOKEN_SECRET = udacityc2
 * yarn watch: run server
 
 ## Note:
-* Specs of users & products models are pending using "xdescripe" to prevent the error "jasmine default timeout interval".
-* **For testing users & products models, replace "xdescripe" with "fdescripe" in "/tests/models/userSpec && /tests/models/productSpec".**
+* Specs of users & products models are pending using "xdescribe" to prevent the error "jasmine default timeout interval".
+* **For testing users & products models, replace "xdescribe" with "fdescribe" in "/tests/models/userSpec && /tests/models/productSpec".**
