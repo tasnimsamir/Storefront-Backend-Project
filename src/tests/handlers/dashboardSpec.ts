@@ -1,16 +1,17 @@
 import supertest from 'supertest';
 import app from '../../server';
 import jwt from 'jsonwebtoken';
-import { User } from '../../models/user';
+import { User,UserStore } from '../../models/user';
 
 const request = supertest(app);
 
 const user:User = {
-  firstname:"tasnim",
-  lastname:"samir",
-  password_digest: "password123"
+  firstname: 'Andy',
+  lastname: 'Sam',
+  password_digest: 'password123'
 }
-const token = jwt.sign(user, process.env.TOKEN_SECRET as string);
+
+const userstore = new UserStore();
 
 describe('Testing Handlers of the Dashboard Services', (): void => {
 
@@ -24,8 +25,11 @@ describe('Testing Handlers of the Dashboard Services', (): void => {
       expect(response.status).toBe(200);
     });
 
-    it('Endpoint: /completedOrders/user/2', async (): Promise<void> => {
-      const response = await request.get('/completedOrders/user/2').set('Authorization', `Bearer ${token}`);
+    it('Endpoint: /completedOrders/user/:user_id', async (): Promise<void> => {
+      const createuser = await userstore.create(user);
+      const token = jwt.sign(createuser, process.env.TOKEN_SECRET as string);
+      const response = await request.get(`/completedOrders/user/${createuser.id}`).set('Authorization', `Bearer ${token}`);
       expect(response.status).toBe(200);
+      await userstore.delete(createuser.id as string);
     });
   });

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": " npm run build && jasmine-ts",
+    "jasmine": " jasmine-ts",
+    "test":"ENV=test db-migrate --env test up && npm run build && npm run jasmine && db-migrate --env test down",
     "tsc": "tsc",
     "build": "npx tsc"
   },

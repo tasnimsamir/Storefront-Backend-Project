@@ -1,18 +1,25 @@
 import supertest from 'supertest';
 import app from '../../server';
 import jwt from 'jsonwebtoken';
-import { User } from '../../models/user';
+import { User,UserStore } from '../../models/user';
 
 const request = supertest(app);
 
 const user:User = {
-  firstname:"tasnim",
-  lastname:"samir",
-  password_digest: "password123"
+  firstname: 'Andy',
+  lastname: 'Sam',
+  password_digest: 'password123'
 }
-const token = jwt.sign(user, process.env.TOKEN_SECRET as string);
+const userstore = new UserStore();
+let token:string;
+let createuser:User;
 
 describe('Testing Handlers of the Users', (): void => {
+
+    beforeAll(async()=>{
+      createuser = await userstore.create(user);
+      token = jwt.sign(createuser, process.env.TOKEN_SECRET as string);
+    });
 
     it('Endpoint: /users [GET]', async (): Promise<void> => {
       const response = await request.get('/users').set('Authorization', `Bearer ${token}`);
@@ -20,12 +27,17 @@ describe('Testing Handlers of the Users', (): void => {
     });
 
     it('Endpoint: /users [POST]', async (): Promise<void> => {
-        const response = await request.post('/users').set('Authorization', `Bearer ${token}`).send(user);
+        const response = await request.post('/users').send(user);
         expect(response.status).toBe(200);
+        await userstore.delete(response.body.id);
     });
 
-    it('Endpoint: /users/2 [GET]', async (): Promise<void> => {
-      const response = await request.get('/users').set('Authorization', `Bearer ${token}`);
+    it('Endpoint: /users/:user_id [GET]', async (): Promise<void> => {
+      const response = await request.get(`/users/${createuser.id}`).set('Authorization', `Bearer ${token}`);
       expect(response.status).toBe(200);
     });
+
+    afterAll(async()=>{
+      await userstore.delete(createuser.id as string);
+    })
   });

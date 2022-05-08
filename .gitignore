@@ -7,3 +7,5 @@ database.json
 yarn.lock
 
 dist
+
+data/

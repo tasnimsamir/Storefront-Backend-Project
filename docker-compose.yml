@@ -1,3 +1,4 @@
+# docker-compose -f docker-compose.yml up >> run the command
 version: '3.9'
 
 services:
@@ -7,8 +8,8 @@ services:
       - '5432:5432'
     env_file:
       - .env
+    container_name: store
     volumes:
-      - 'postgres:/var/lib/postgresql/data'
+      - ./data/storepostgres:/var/lib/postgresql/data
+      - ./psql.sh:/docker-entrypoint-initdb.d/psql.sh
 
-volumes:
-  postgres:

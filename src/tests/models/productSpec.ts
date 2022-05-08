@@ -5,7 +5,7 @@ let product: Product;
 let createproduct: Product;
 
 
-xdescribe ('Testing product model', ():void =>{
+describe ('Testing product model', ():void =>{
 
     beforeAll(() => {
         product = {
@@ -14,10 +14,22 @@ xdescribe ('Testing product model', ():void =>{
             category: 'beauty'
         }
     });
-    
-    // it('INDEX method returns a list', async() => {
-    //     expect((await productstore.index()).length).toBeGreaterThanOrEqual(0);
-    // });
+
+    it('INDEX method should be defined',():void =>{
+        expect(productstore.index()).toBeDefined();
+    });
+
+    it('SHOW method should be defined',():void =>{
+        expect(productstore.show).toBeDefined();
+    });
+
+    it('CREATE method should be defined',():void =>{
+        expect(productstore.create).toBeDefined();
+    });
+
+    it('DELETE method should be defined',():void =>{
+        expect(productstore.delete).toBeDefined();
+    });
 
     it('The product is inserted with CREATE method', async() => {
         createproduct = await productstore.create(product);
@@ -35,25 +47,11 @@ xdescribe ('Testing product model', ():void =>{
     });
 
 
-    // it ('The product is deleted with DELETE method',async() => {
-    //     expect(await productstore.delete(createproduct.id as string)).toBeUndefined();
-    // });
-
-    it('INDEX method should be defined',():void =>{
-        expect(productstore.index()).toBeDefined();
+    it ('The product is deleted with DELETE method',async() => {
+        expect(await productstore.delete(createproduct.id as string)).toBeUndefined();
     });
 
-    it('SHOW method should be defined',():void =>{
-        expect(productstore.show).toBeDefined();
-    });
-
-    it('CREATE method should be defined',():void =>{
-        expect(productstore.create).toBeDefined();
-    });
-
-    // it('DELETE method should be defined',():void =>{
-    //     expect(productstore.delete).toBeDefined();
-    // });
+    
 
 
 });

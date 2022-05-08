@@ -79,7 +79,3 @@ TOKEN_SECRET = udacityc2
 * npm run test : build & test with jasmine
 * npm run build: compile typescript to javacsript in /dist folder
 * yarn watch: run server
-
-## Note:
-* Specs of users & products models are pending using "xdescribe" to prevent the error "jasmine default timeout interval".
-* **For testing users & products models, replace "xdescribe" with "fdescribe" in "/tests/models/userSpec && /tests/models/productSpec".**
