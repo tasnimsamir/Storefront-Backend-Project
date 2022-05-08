@@ -8,7 +8,7 @@ let createuser: User;
 const pepper = process.env.BCRYPT_PASSWORD as string;
 
 
-describe ('Testing user model', ():void =>{
+fdescribe ('Testing user model', ():void =>{
 
     beforeAll(() => {
         user = {

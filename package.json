@@ -7,7 +7,7 @@
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
     "jasmine": " jasmine-ts",
-    "test":"ENV=test db-migrate --env test up && npm run build && npm run jasmine && db-migrate --env test down",
+    "test":"ENV=test db-migrate --env test up && npm run build && npm run jasmine && db-migrate db:drop postgres_express_api_test",
     "tsc": "tsc",
     "build": "npx tsc"
   },
