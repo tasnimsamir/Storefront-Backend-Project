@@ -37,7 +37,6 @@ describe('Testing Handlers of the Users', (): void => {
     it('Endpoint: /users [POST]', async (): Promise<void> => {
         const response = await request.post('/users').send(user);
         expect(response.status).toBe(200);
-        await userstore.delete(response.body.id);
     });
 
     it('Endpoint: /users/:user_id [GET]', async (): Promise<void> => {

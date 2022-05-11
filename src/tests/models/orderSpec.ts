@@ -5,7 +5,14 @@ import { Order,OrderStore } from "../../models/order";
 // let user: User;
 // let createuser: User;
 
-const orderstore = new OrderStore();
+const order:Order = {
+    order_status: 'in progress',
+    user_id: '1'
+  }
+  
+  const orderstore = new OrderStore();
+  
+
 // let order: Order;
 // let createorder: Order;
 
