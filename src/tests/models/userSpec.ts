@@ -8,7 +8,7 @@ let createuser: User;
 const pepper = process.env.BCRYPT_PASSWORD as string;
 
 
-fdescribe ('Testing user model', ():void =>{
+describe ('Testing user model', ():void =>{
 
     beforeAll(() => {
         user = {
@@ -45,7 +45,7 @@ fdescribe ('Testing user model', ():void =>{
         const hashedpass = bcrypt.compareSync(
             user.password_digest + pepper,
             createuser.password_digest as string
-        )
+        );
         expect(hashedpass).toBeTruthy();
     });
 

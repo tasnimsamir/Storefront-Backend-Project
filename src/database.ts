@@ -15,6 +15,7 @@ const {
 let client
 console.log(`Environment: ${ENV}`)
 
+
 if(ENV === 'test') {
   console.log('TEST Environment')
   client = new Pool({

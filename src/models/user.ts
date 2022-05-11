@@ -84,9 +84,11 @@ export class UserStore {
         
               const user = result.rows[0]
               if (bcrypt.compareSync(password+pepper, user.password_digest)) {
+                conn.release;
                 return user
               }
             }
+            conn.release;
             return null
         }
         catch(err){
