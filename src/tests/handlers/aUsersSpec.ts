@@ -10,19 +10,27 @@ const user:User = {
   lastname: 'Sam',
   password_digest: 'password123'
 }
+
 const userstore = new UserStore();
-let token:string;
-let createuser:User;
+
+const UserCreated = async(user:User)=>{
+  try{
+    const createuser = await userstore.create(user);
+    const token = jwt.sign(createuser, process.env.TOKEN_SECRET as string);
+    return {testUser: createuser as User, testToken: token}
+  }
+  catch(err){
+    throw new Error(err as string);
+  }
+}
+
+const TestUser = UserCreated(user);
+
 
 describe('Testing Handlers of the Users', (): void => {
 
-    beforeAll(async()=>{
-      createuser = await userstore.create(user);
-      token = jwt.sign(createuser, process.env.TOKEN_SECRET as string);
-    });
-
     it('Endpoint: /users [GET]', async (): Promise<void> => {
-      const response = await request.get('/users').set('Authorization', `Bearer ${token}`);
+      const response = await request.get('/users').set('Authorization', `Bearer ${(await TestUser).testToken}`);
       expect(response.status).toBe(200);
     });
 
@@ -33,11 +41,9 @@ describe('Testing Handlers of the Users', (): void => {
     });
 
     it('Endpoint: /users/:user_id [GET]', async (): Promise<void> => {
-      const response = await request.get(`/users/${createuser.id}`).set('Authorization', `Bearer ${token}`);
+      const response = await request.get(`/users/${(await TestUser).testUser.id}`).set('Authorization', `Bearer ${(await TestUser).testToken}`);
       expect(response.status).toBe(200);
     });
-
-    afterAll(async()=>{
-      await userstore.delete(createuser.id as string);
-    })
   });
+
+export default TestUser;
