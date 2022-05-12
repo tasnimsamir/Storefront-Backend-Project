@@ -45,3 +45,6 @@ describe('Testing Handlers of the Products', (): void => {
       expect(response.status).toBe(200);
     });
   });
+
+
+  export default TestProduct;
