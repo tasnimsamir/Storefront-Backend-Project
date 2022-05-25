@@ -40,7 +40,7 @@ export class UserStore {
             throw new Error(err as string);
         }
     }
-
+    // sign up
     async create(u:User): Promise<User>{
         try{
             // @ts-ignore
@@ -73,6 +73,7 @@ export class UserStore {
         }
     }
 
+    // sign in
     async authenticate(id:string, password: string): Promise<User | null> {
         try{
             // @ts-ignore

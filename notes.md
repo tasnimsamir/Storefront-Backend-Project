@@ -16,3 +16,11 @@
 * **Object Relation Mapping(ORM):** To write my sql queries with a typescript code.
 
 * export class UserStore {} >> *interface* to interact with sql queries & DB in typescript for users table.
+
+* difference between hashing and encryption:
+    * encryption: two-way straight(encryption/dycryption) with a key
+    * hashing: one way (more secure and powerful)
+
+* sql update queries >> COALESCE (if the value is null take the backup values)
+
+* Q: how we apply MVC here?
